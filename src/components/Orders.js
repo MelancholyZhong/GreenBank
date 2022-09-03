@@ -21,18 +21,19 @@ const rows = [
   createData(4, "15 Mar, 2019", "Bruce Springsteen", 21.5),
 ]
 
-export default function Orders() {
+export default function Orders(props) {
+  const tableTitle = props.titles
   const navigate = useNavigate()
 
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
+      <Title>{tableTitle.title}</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Title</TableCell>
-            <TableCell align="right">Points</TableCell>
+            <TableCell>{tableTitle.col1}</TableCell>
+            <TableCell>{tableTitle.col2}</TableCell>
+            <TableCell align="right">{tableTitle.col3}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

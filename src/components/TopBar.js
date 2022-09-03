@@ -35,15 +35,16 @@ export default function TopBar() {
               <Typography
                 variant="h5"
                 textAlign="center"
-                sx={{ padding: "5px" }}
+                sx={{ padding: "6px" }}
               >
                 Green Bank
               </Typography>
             </Grid>
-            <Grid item xs={1.5}>
+            <Grid item xs={1}>
               <Button
                 variant="contained"
                 color="secondary"
+                sx={{ margin: "5px" }}
                 onClick={() => {
                   navigate("/explore")
                 }}
@@ -51,10 +52,11 @@ export default function TopBar() {
                 Explore
               </Button>
             </Grid>
-            <Grid item xs={1.5}>
+            <Grid item xs={1}>
               <Button
                 variant="contained"
                 color="secondary"
+                sx={{ margin: "5px" }}
                 onClick={() => {
                   navigate("/redeem")
                 }}
@@ -62,8 +64,8 @@ export default function TopBar() {
                 Redeem
               </Button>
             </Grid>
-            <Grid item xs={5}></Grid>
-            <Grid item xs={1.5}>
+            <Grid item xs={7}></Grid>
+            <Grid item xs={0.5}>
               <IconButton
                 onClick={() => {
                   navigate("/user")

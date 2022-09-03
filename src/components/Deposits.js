@@ -8,7 +8,7 @@ export default function Deposits() {
   const navigate = useNavigate()
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
+      <Title>Account Balance</Title>
       <Typography component="p" variant="h4">
         349.5 points
       </Typography>

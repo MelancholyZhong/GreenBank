@@ -2,6 +2,7 @@ import { Box, Grid, Paper, Rating } from "@mui/material"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import React from "react"
+import MakeDeposit from "./MakeDeposit"
 
 export default function MarketItem(props) {
   const item = props.item
@@ -37,9 +38,7 @@ export default function MarketItem(props) {
           justifyContent="space-evenly"
           alignItems="center"
         >
-          <Button variant="contained" color="success" size="medium">
-            Add my own
-          </Button>
+          <MakeDeposit item={item} />
         </Box>
       </Box>
     </Paper>

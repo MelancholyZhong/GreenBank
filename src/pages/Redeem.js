@@ -11,6 +11,7 @@ export default function Redeem() {
       imgSrc:
         "https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZmxpZ2h0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
       description: "A good flight for free!",
+      price: 3000,
     },
     {
       id: 31,
@@ -18,6 +19,7 @@ export default function Redeem() {
       imgSrc:
         "https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZmxpZ2h0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
       description: "A good plane for free!",
+      price: 30,
     },
   ]
   return (

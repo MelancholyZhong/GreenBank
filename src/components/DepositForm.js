@@ -24,14 +24,25 @@ export default function DepositForm(props) {
   const [descriptionValue, setDescriptionValue] = useState(item.description)
   const pointsValue = item.points
 
-  const handlesubmit = () => {
-    const newTodo = {
-      id: genUniqueId(),
-      title: titleValue,
-      actionDate: dateValue,
-      description: descriptionValue,
-      points: pointsValue,
+  const handlesubmit = async () => {
+    try {
+      await fetch("http://localhost:1234/profile/deposit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: genUniqueId(),
+          title: titleValue,
+          actionDate: dateValue,
+          description: descriptionValue,
+          points: pointsValue,
+        }),
+      })
+    } catch (err) {
+      console.log(err)
     }
+
     props.onSubmit()
   }
 

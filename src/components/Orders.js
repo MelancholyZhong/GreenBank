@@ -7,23 +7,35 @@ import TableHead from "@mui/material/TableHead"
 import TableRow from "@mui/material/TableRow"
 import Title from "./Title"
 import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 // Generate Order Data
-function createData(id, actionDate, title, points) {
-  return { id, actionDate, title, points }
-}
-
-const rows = [
-  createData(0, "16 Mar, 2019", "Elvis Presley", 31.5),
-  createData(1, "16 Mar, 2019", "Paul McCartney", 17),
-  createData(2, "16 Mar, 2019", "Tom Scholz", 11),
-  createData(3, "16 Mar, 2019", "Michael Jackson", 25),
-  createData(4, "15 Mar, 2019", "Bruce Springsteen", 21.5),
-]
 
 export default function Orders(props) {
+  const [recentDeposits, setRecentDeposits] = useState()
+  const [recentOrders, setRecentOrders] = useState()
   const tableTitle = props.titles
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const sendRequest = async () => {
+      try {
+        const depositsResponse = await fetch(
+          "http://localhost:1234/profile/deposit"
+        )
+        const depositsResponseData = await depositsResponse.json()
+        setRecentDeposits(depositsResponseData.deposits)
+        const ordersResponse = await fetch(
+          "http://localhost:1234/profile/order"
+        )
+        const ordersResponseData = await ordersResponse.json()
+        setRecentOrders(ordersResponseData.orders)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    sendRequest()
+  }, [])
 
   return (
     <React.Fragment>
@@ -37,13 +49,23 @@ export default function Orders(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.actionDate}</TableCell>
-              <TableCell>{row.title}</TableCell>
-              <TableCell align="right">{`$${row.points}`}</TableCell>
-            </TableRow>
-          ))}
+          {props.type === "deposit"
+            ? recentDeposits &&
+              recentDeposits.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.actionDate}</TableCell>
+                  <TableCell>{row.title}</TableCell>
+                  <TableCell align="right">{row.points}</TableCell>
+                </TableRow>
+              ))
+            : recentOrders &&
+              recentOrders.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.purchaseDate}</TableCell>
+                  <TableCell>{row.title}</TableCell>
+                  <TableCell align="right">{row.price}</TableCell>
+                </TableRow>
+              ))}
         </TableBody>
       </Table>
       <Link

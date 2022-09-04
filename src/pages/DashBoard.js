@@ -1,8 +1,9 @@
 import React from "react"
 import { Grid, Container, Paper } from "@mui/material"
 import Chart from "../components/Chart"
-import Deposits from "../components/Deposits"
 import Orders from "../components/Orders"
+import Balance from "../components/Balance"
+
 export default function DashBoard() {
   const depositTitle = {
     title: "Recent deposits",
@@ -10,6 +11,7 @@ export default function DashBoard() {
     col2: "Title",
     col3: "Points",
   }
+
   const orderTitle = {
     title: "Recent orders",
     col1: "Date",
@@ -33,7 +35,6 @@ export default function DashBoard() {
             <Chart />
           </Paper>
         </Grid>
-        {/* Recent Deposits */}
         <Grid item xs={12} md={5} lg={4}>
           <Paper
             sx={{
@@ -43,18 +44,18 @@ export default function DashBoard() {
               height: 240,
             }}
           >
-            <Deposits />
+            <Balance />
           </Paper>
         </Grid>
         {/* Recent Orders */}
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-            <Orders titles={depositTitle} />
+            <Orders type="deposit" titles={depositTitle} />
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-            <Orders titles={orderTitle} />
+            <Orders type="order" titles={orderTitle} />
           </Paper>
         </Grid>
       </Grid>

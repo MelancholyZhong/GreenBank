@@ -1,12 +1,5 @@
-import {
-  Box,
-  Button,
-  Paper,
-  Rating,
-  TextField,
-  Typography,
-} from "@mui/material"
-import React, { useState } from "react"
+import { Box, Button, Paper, Typography } from "@mui/material"
+import React from "react"
 
 export function genUniqueId() {
   const dateStr = Date.now().toString(36) // convert num to base 36 and stringify
@@ -19,13 +12,23 @@ export function genUniqueId() {
 export default function RedeemForm(props) {
   const item = props.item
 
-  const handlesubmit = () => {
-    const newOrder = {
-      id: genUniqueId(),
-      title: item.name,
-      description: item.description,
-      purchaseDate: "2022-9-3",
-      price: item.price,
+  const handlesubmit = async () => {
+    try {
+      await fetch("http://localhost:1234/profile/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: genUniqueId(),
+          title: item.name,
+          purchaseDate: "Sep 3, 2022",
+          description: item.description,
+          price: item.price,
+        }),
+      })
+    } catch (err) {
+      console.log(err)
     }
     props.onSubmit()
   }
